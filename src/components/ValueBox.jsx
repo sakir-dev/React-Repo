@@ -1,4 +1,3 @@
-// /*eslint-disable */
 import React from "react";
 import { useContext } from "react";
 import oneContext from "../context/OneContext";

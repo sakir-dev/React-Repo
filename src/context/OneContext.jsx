@@ -1,4 +1,3 @@
-/*eslint-disable */
 import React from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { createContext, useState } from "react";
@@ -7,12 +6,12 @@ import typeMapper from "../data/typeMapper";
 const oneContext = createContext();
 
 export const OneProvider = ({ children }) => {
-  const [incrementIcon, setIncrementIcon] = useState(FaArrowUp);
-  const [decrementIcon, setDecrementIcon] = useState(FaArrowDown);
-  const [incrementText, setIncrementText] = useState("Increment");
-  const [decrementText, setDecrementText] = useState("Decrement");
+  const [incrementIcon] = useState(FaArrowUp);
+  const [decrementIcon] = useState(FaArrowDown);
+  const [incrementText] = useState("Increment");
+  const [decrementText] = useState("Decrement");
   const [rows, setRows] = useState(defaultRows);
-  const [types, setTypes] = useState(typeMapper);
+  const [types] = useState(typeMapper);
   const [lastUpdatedId, setLastUpdatedId] = useState(null);
   const handleReset = (id) => {
     setRows(
