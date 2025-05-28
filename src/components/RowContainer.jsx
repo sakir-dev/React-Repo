@@ -11,6 +11,7 @@ function RowContainer() {
       <ContentRow type={types.text} />
       <ContentRow type={types.icon} />
       <ContentRow type={types.link} />
+      <ContentRow type={types.button} />
     </div>
   );
 }
