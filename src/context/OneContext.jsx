@@ -1,6 +1,5 @@
-import React from "react";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 import defaultRows from "../data/row";
 const oneContext = createContext();
 
@@ -11,6 +10,7 @@ export const OneProvider = ({ children }) => {
   const [decrementText] = useState("Decrement");
   const [rows, setRows] = useState(defaultRows);
   const [lastUpdatedId, setLastUpdatedId] = useState(null);
+
   const handleReset = (id) => {
     setRows(
       rows.map((item) => {
@@ -98,6 +98,7 @@ export const OneProvider = ({ children }) => {
         increment,
         decrement,
         handleReset,
+        setRows,
       }}
     >
       {children}
