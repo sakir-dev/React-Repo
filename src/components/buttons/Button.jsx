@@ -1,18 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import getContextObject from "../../utils/GetContextObject";
-function Button({ type, operation }) {
-  const contextObj = getContextObject(operation);
+import GetContextObject from "../../utils/GetContextObject";
+function Button({ type, id, operation }) {
+  const contextObj = GetContextObject(operation);
   let content;
   switch (type) {
     case 1:
       content = (
-        <h1 onClick={() => contextObj.function(type)}>{contextObj.text}</h1>
+        <h1 onClick={() => contextObj.function(id)}>{contextObj.text}</h1>
       );
       break;
     case 2:
       content = (
-        <p onClick={() => contextObj.function(type)}>{contextObj.text}</p>
+        <p onClick={() => contextObj.function(id)}>{contextObj.text}</p>
       );
       break;
     case 3:
@@ -22,7 +22,7 @@ function Button({ type, operation }) {
             to="#"
             onClick={(e) => {
               e.preventDefault();
-              contextObj.function(type);
+              contextObj.function(id);
             }}
           >
             {contextObj.text}
@@ -32,19 +32,19 @@ function Button({ type, operation }) {
       break;
     case 4:
       content = (
-        <button onClick={() => contextObj.function(type)}>
+        <button onClick={() => contextObj.function(id)}>
           {contextObj.icon} {contextObj.text}
         </button>
       );
       break;
     case 5:
       content = (
-        <span onClick={() => contextObj.function(type)}>{contextObj.icon}</span>
+        <span onClick={() => contextObj.function(id)}>{contextObj.icon}</span>
       );
       break;
     default:
       content = (
-        <button onClick={() => contextObj.function(type)}>
+        <button onClick={() => contextObj.function(id)}>
           {contextObj.text}
         </button>
       );

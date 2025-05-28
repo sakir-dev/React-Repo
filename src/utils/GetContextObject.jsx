@@ -1,8 +1,7 @@
-/*eslint-disable */
 import React from "react";
 import { useContext } from "react";
 import oneContext from "../context/OneContext";
-function getContextObject(operation) {
+function GetContextObject(operation) {
   const {
     incrementIcon,
     decrementIcon,
@@ -16,4 +15,4 @@ function getContextObject(operation) {
     : { text: decrementText, icon: decrementIcon, function: decrement };
 }
 
-export default getContextObject;
+export default GetContextObject;

@@ -3,15 +3,12 @@ import ContentRow from "./ContentRow";
 import { useContext } from "react";
 import oneContext from "../context/OneContext";
 function RowContainer() {
-  const { types } = useContext(oneContext);
+  const { rows } = useContext(oneContext);
   return (
     <div className="row-container">
-      <ContentRow type={types.heading} />
-      <ContentRow type={types.button} />
-      <ContentRow type={types.text} />
-      <ContentRow type={types.icon} />
-      <ContentRow type={types.link} />
-      <ContentRow type={types.button} />
+      {rows.map((item, _index) => {
+        return <ContentRow key={_index} type={item.typeId} id={item.id} />;
+      })}
     </div>
   );
 }

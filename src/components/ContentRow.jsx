@@ -4,14 +4,14 @@ import ColorBox from "./ColorBox";
 import ResetButton from "./buttons/ResetButton";
 import ValueBox from "./ValueBox";
 
-function ContentRow({ type }) {
+function ContentRow({ type, id }) {
   return (
     <div className="row">
-      <Button type={type} operation={"increment"} />
-      <Button type={type} operation={"decrement"} />
-      <ValueBox id={type} />
-      <ResetButton id={type} />
-      <ColorBox id={type} />
+      <Button type={type} id={id} operation={"increment"} />
+      <Button type={type} id={id} operation={"decrement"} />
+      <ValueBox id={id} />
+      <ResetButton id={id} />
+      <ColorBox id={id} />
     </div>
   );
 }
