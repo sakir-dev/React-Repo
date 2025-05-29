@@ -1,8 +1,5 @@
-import React, { useContext } from "react";
-import oneContext from "../context/OneContext";
 import getDivisibleByText from "../utils/getDivisibleByText";
-function AllRowInfo() {
-  const { rows } = useContext(oneContext);
+function AllRowInfo({ rows }) {
   return (
     <div className="all-counter-info-container">
       <ul>

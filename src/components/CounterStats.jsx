@@ -1,11 +1,12 @@
 import React from "react";
-import LastUpdatedInof from "./LastUpdatedInfo";
 import AllRowInfo from "./AllRowInfo";
-function Stats() {
+import LastUpdatedInfo from "./LastUpdatedInfo";
+
+function Stats({ rows, lastUpdatedId }) {
   return (
     <div className="counter-stats-container">
-      <LastUpdatedInof />
-      <AllRowInfo />
+      <LastUpdatedInfo rows={rows} lastUpdatedId={lastUpdatedId} />
+      <AllRowInfo rows={rows} />
     </div>
   );
 }

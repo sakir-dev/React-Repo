@@ -1,9 +1,6 @@
 import React from "react";
-import { useContext } from "react";
-import oneContext from "../../context/OneContext";
 
-function ResetButton({ id }) {
-  const { handleReset } = useContext(oneContext);
+function ResetButton({ id, handleReset }) {
   return (
     <div className="row-item" onClick={() => handleReset(id)}>
       reset

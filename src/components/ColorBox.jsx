@@ -1,9 +1,6 @@
 import React from "react";
-import { useContext } from "react";
-import oneContext from "../context/OneContext";
-function ColorBox({ id }) {
-  const { rows } = useContext(oneContext);
-  const itemDiv = rows.filter((item) => item.id == id)[0].divBy;
+function ColorBox({ rows, id }) {
+  const itemDiv = rows.filter((item) => item.id == id)[0]?.divBy;
   let className = "";
   if (itemDiv.divBy2and3) {
     className = "yellow";
