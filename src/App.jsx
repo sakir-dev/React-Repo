@@ -1,14 +1,11 @@
-import React, { useState } from "react";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { useState } from "react";
 import RowContainer from "./components/RowContainer";
-import Stats from "./components/CounterStats";
+import Stats from "./components/Stats.jsx";
 import defaultRows from "./data/row.jsx";
 
 function App() {
-  const [incrementIcon] = useState(FaArrowUp);
-  const [decrementIcon] = useState(FaArrowDown);
   const [rows, setRows] = useState(defaultRows);
-  const [lastUpdatedId, setLastUpdatedId] = useState(null);
+  const [lastUpdatedId, setLastUpdatedId] = useState(0);
 
   const reset = (id) => {
     setRows(
@@ -84,23 +81,13 @@ function App() {
     );
   };
 
-  const operations = {
-    increment,
-    decrement,
-    reset,
-  };
-
-  const icons = {
-    incrementIcon: incrementIcon,
-    decrementIcon: decrementIcon,
-  };
-
   return (
     <>
       <RowContainer
         rows={rows}
-        operations={operations}
-        icons={icons}
+        increment={increment}
+        decrement={decrement}
+        reset={reset}
         setRows={setRows}
       />
       <Stats rows={rows} lastUpdatedId={lastUpdatedId} />

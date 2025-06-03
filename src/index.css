@@ -341,3 +341,36 @@ button:focus-visible {
     padding: 6px;
   }
 }
+
+.reset-btn {
+  background-color: #ff4d4d; /* Soft Red for the background */
+  color: white; /* White text color */
+  font-size: 16px; /* Standard font size */
+  font-weight: bold; /* Bold font weight */
+  padding: 12px 20px; /* Padding around the button */
+  border: none; /* No border */
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s ease-in-out; /* Smooth transition for effects */
+}
+
+.reset-btn:hover {
+  background-color: #ff1a1a; /* Darker red on hover */
+  transform: translateY(-3px); /* Slight upward movement on hover */
+}
+
+.reset-btn:active {
+  background-color: #cc0000; /* Even darker red when pressed */
+  transform: translateY(2px); /* Button "push" effect when clicked */
+}
+
+.reset-btn:focus {
+  outline: none; /* Remove outline */
+  box-shadow: 0 0 5px rgba(255, 77, 77, 0.7); /* Glow effect when focused */
+}
+
+.reset-btn:disabled {
+  background-color: #e0e0e0; /* Light grey for disabled state */
+  color: #b0b0b0; /* Greyed out text */
+  cursor: not-allowed; /* No pointer cursor when disabled */
+}

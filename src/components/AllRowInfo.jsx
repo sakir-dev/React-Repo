@@ -1,14 +1,14 @@
-import getDivisibleByText from "../utils/getDivisibleByText";
+import generateDivisibilityLabel from "../utils/generateDivisibilityLabel";
 function AllRowInfo({ rows }) {
   return (
     <div className="all-counter-info-container">
       <ul>
-        {rows.map((item, _index) => {
-          const divisibleBy = getDivisibleByText({ item });
+        {rows.map((row) => {
+          const divisibleBy = generateDivisibilityLabel({ item: row });
           return (
-            <li key={_index}>
-              {item.name} counter : value is: {item.counterValue}, it is
-              divisible by {divisibleBy}
+            <li key={row.id}>
+              {row.name} counter : value is: {row.counterValue}, it is divisible
+              by {divisibleBy}
             </li>
           );
         })}
