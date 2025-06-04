@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RowContainer from "./components/RowContainer";
 import Stats from "./components/Stats.jsx";
 import defaultRows from "./data/row.jsx";
@@ -6,6 +6,22 @@ import defaultRows from "./data/row.jsx";
 function App() {
   const [rows, setRows] = useState(defaultRows);
   const [lastUpdatedId, setLastUpdatedId] = useState(0);
+
+  useEffect(() => {
+    // Sort rows whenever any counterValue changes
+    const sortedRows = [...rows].sort(
+      (a, b) => a.counterValue - b.counterValue
+    );
+
+    const isSameOrder = rows.every(
+      (item, index) => item.id === sortedRows[index]?.id
+    );
+    // if the order is same then we don't change the rows
+    //this will also prevent it from going to infinite re-rendering
+    if (!isSameOrder) {
+      setRows(sortedRows);
+    }
+  }, [rows]);
 
   const reset = (id) => {
     setRows(
