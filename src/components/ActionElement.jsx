@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import getIconForOperation from "../utils/getIconForOperation";
 
 function ActionElement({ type, id, operation, optFunction }) {
   let content;
-  const icon = operation == "increment" ? <FaArrowUp /> : <FaArrowDown />;
+  const icon = getIconForOperation(operation);
 
   const handleClick = (e) => {
     e.preventDefault();
