@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Link } from "react-router-dom";
 import getIconForOperation from "../utils/getIconForOperation";
+import getContentFromType from "./getContentFromType";
 
 function ActionElement({ type, id, operation, optFunction }) {
   let content;
@@ -10,31 +10,7 @@ function ActionElement({ type, id, operation, optFunction }) {
     optFunction(id);
   };
 
-  switch (type) {
-    case 1:
-      content = <h1 onClick={handleClick}>{operation}</h1>;
-      break;
-    case 2:
-      content = <p onClick={handleClick}>{operation}</p>;
-      break;
-    case 3:
-      content = (
-        <Router>
-          <Link to="#" onClick={handleClick}>
-            {operation}
-          </Link>
-        </Router>
-      );
-      break;
-    case 4:
-      content = <button onClick={handleClick}>{operation}</button>;
-      break;
-    case 5:
-      content = <span onClick={handleClick}>{icon}</span>;
-      break;
-    default:
-      content = <button onClick={handleClick}>{operation}</button>;
-  }
+  content = getContentFromType(type, handleClick, operation, icon);
 
   return <div className="row-item">{content}</div>;
 }
