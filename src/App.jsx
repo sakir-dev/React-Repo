@@ -21,6 +21,20 @@ function App() {
     }
   }, [rows]);
 
+  const calculateUpdatedItem = (item, delta) => {
+    const newCounterValue = item.counterValue + delta;
+
+    return {
+      ...item,
+      counterValue: newCounterValue,
+      divBy: {
+        divBy2: newCounterValue % 2 === 0,
+        divBy3: newCounterValue % 3 === 0,
+        divBy2and3: newCounterValue % 6 === 0,
+      },
+    };
+  };
+
   const reset = (id) => {
     setRows(
       rows.map((item) => {
@@ -46,28 +60,18 @@ function App() {
     setRows(
       rows.map((item) => {
         if (item.id === id) {
-          let newCounterValue = item.counterValue + 1;
-          setLastUpdatedId(id);
-          return {
-            ...item,
-            counterValue: newCounterValue,
-            divBy: {
-              divBy2: newCounterValue % 2 === 0,
-              divBy3: newCounterValue % 3 === 0,
-              divBy2and3: newCounterValue % 6 === 0,
-            },
-          };
+          return calculateUpdatedItem(item, 1);
         }
         return item;
       })
     );
+    setLastUpdatedId(id);
   };
 
   const decrement = (id) => {
     setRows(
       rows.map((item) => {
         if (item.id === id) {
-          setLastUpdatedId(id);
           if (item.counterValue - 1 <= item.defaultCounterValue) {
             return {
               ...item,
@@ -79,20 +83,12 @@ function App() {
               },
             };
           }
-          let newCounterValue = item.counterValue - 1;
-          return {
-            ...item,
-            counterValue: newCounterValue,
-            divBy: {
-              divBy2: newCounterValue % 2 === 0,
-              divBy3: newCounterValue % 3 === 0,
-              divBy2and3: newCounterValue % 6 === 0,
-            },
-          };
+          return calculateUpdatedItem(item, -1);
         }
         return item;
       })
     );
+    setLastUpdatedId(id);
   };
 
   return (
