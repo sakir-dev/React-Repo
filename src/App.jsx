@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 import RowContainer from "./components/RowContainer";
 import Stats from "./components/Stats.jsx";
 import defaultRows from "./data/rowData.jsx";
-import sortRows from "./utils/sortRows.jsx";
-import checkIsSameOrder from "./utils/checkIsSameOrder.jsx";
+
+function sortRows(rows) {
+  return [...rows].sort((a, b) => a.counterValue - b.counterValue);
+}
+
+function checkIsSameOrder(origRows, sortedRows) {
+  return origRows.every((item, index) => item.id === sortedRows[index]?.id);
+}
 
 function App() {
   const [rows, setRows] = useState(defaultRows);
