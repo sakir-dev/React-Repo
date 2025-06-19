@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import RowContainer from "./components/RowContainer";
 import Stats from "./components/Stats.jsx";
 import defaultRows from "./data/rowData.jsx";
@@ -39,32 +39,32 @@ function App() {
   const [rows, setRows] = useState(defaultRows);
   const [lastUpdatedId, setLastUpdatedId] = useState(0);
 
-  const reset = (id) => {
+  const reset = useCallback((id) => {
     setRows((prevRows) => {
       const updatedItem = setToDefault(prevRows.find((item) => item.id == id));
       const newRows = prevRows.map((item) =>item.id == id ? updatedItem : item);
       return sortRows(newRows);
     });
     setLastUpdatedId(id);
-  };
+  }, []);
 
-  const increment = (id) => {
+  const increment = useCallback((id) => {
     setRows((prevRows) => {
       const updatedItem = calculateUpdatedItem(prevRows.find((item) => item.id == id),1);
       const newRows = prevRows.map((item) =>item.id == id ? updatedItem : item);
       return sortRows(newRows);
     });
     setLastUpdatedId(id);
-  };
+  }, []);
 
-  const decrement = (id) => {
+  const decrement = useCallback( (id) => {
     setRows((prevRows) => {
       const updatedItem = calculateUpdatedItem(prevRows.find((item) => item.id == id),-1);
       const newRows = prevRows.map((item) =>item.id == id ? updatedItem : item);
       return sortRows(newRows);
     });
     setLastUpdatedId(id);
-  };
+  }, []);
 
   return (
     <>
@@ -73,7 +73,6 @@ function App() {
         increment={increment}
         decrement={decrement}
         reset={reset}
-        setRows={setRows}
       />
       <Stats rows={rows} lastUpdatedId={lastUpdatedId} />
     </>

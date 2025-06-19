@@ -3,7 +3,7 @@ import CounterBlock from "./CounterBlock";
 import ResetButton from "./ResetButton";
 import ColorBlock from "./ColorBlock";
 
-function RowContainer({ rows, increment, decrement, reset, setRows }) {
+function RowContainer({ rows, increment, decrement, reset }) {
   return (
     <div className="row-container">
       {rows.map((row) => {
@@ -21,7 +21,7 @@ function RowContainer({ rows, increment, decrement, reset, setRows }) {
               operation="decrement"
               optFunction={decrement}
             />
-            <CounterBlock id={row.id} rows={rows} setRows={setRows} />
+            <CounterBlock id={row.id} rows={rows} />
             <ResetButton id={row.id} reset={reset} />
             <ColorBlock divBy={row.divBy} />
           </div>
