@@ -11,6 +11,20 @@ function checkIsSameOrder(origRows, sortedRows) {
   return origRows.every((item, index) => item.id === sortedRows[index]?.id);
 }
 
+const calculateUpdatedItem = (item, delta) => {
+  const newCounterValue = item.counterValue + delta;
+
+  return {
+    ...item,
+    counterValue: newCounterValue,
+    divBy: {
+      divBy2: newCounterValue % 2 === 0,
+      divBy3: newCounterValue % 3 === 0,
+      divBy2and3: newCounterValue % 6 === 0,
+    },
+  };
+};
+
 function App() {
   const [rows, setRows] = useState(defaultRows);
   const [lastUpdatedId, setLastUpdatedId] = useState(0);
@@ -26,20 +40,6 @@ function App() {
       setRows(sortedRows);
     }
   }, [rows]);
-
-  const calculateUpdatedItem = (item, delta) => {
-    const newCounterValue = item.counterValue + delta;
-
-    return {
-      ...item,
-      counterValue: newCounterValue,
-      divBy: {
-        divBy2: newCounterValue % 2 === 0,
-        divBy3: newCounterValue % 3 === 0,
-        divBy2and3: newCounterValue % 6 === 0,
-      },
-    };
-  };
 
   const reset = (id) => {
     setRows(

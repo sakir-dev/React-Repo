@@ -6,7 +6,6 @@ function getIconForOperation(operation) {
   return icon;
 }
 
-
 function ActionElement({ type, id, operation, optFunction }) {
   let content;
   const icon = getIconForOperation(operation);
