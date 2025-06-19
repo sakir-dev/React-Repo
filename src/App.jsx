@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import RowContainer from "./components/RowContainer";
 import Stats from "./components/Stats.jsx";
 import defaultRows from "./data/rowData.jsx";
@@ -7,13 +7,11 @@ function sortRows(rows) {
   return [...rows].sort((a, b) => a.counterValue - b.counterValue);
 }
 
-function checkIsSameOrder(origRows, sortedRows) {
-  return origRows.every((item, index) => item.id === sortedRows[index]?.id);
-}
-
 const calculateUpdatedItem = (item, delta) => {
   const newCounterValue = item.counterValue + delta;
-
+  if (newCounterValue <= item.defaultCounterValue) {
+    return setToDefault(item);
+  }
   return {
     ...item,
     counterValue: newCounterValue,
@@ -25,75 +23,46 @@ const calculateUpdatedItem = (item, delta) => {
   };
 };
 
+function setToDefault(item) {
+  return {
+    ...item,
+    counterValue: item.defaultCounterValue,
+    divBy: {
+      divBy2and3: false,
+      divBy3: false,
+      divBy2: false,
+    },
+  };
+}
+
 function App() {
   const [rows, setRows] = useState(defaultRows);
   const [lastUpdatedId, setLastUpdatedId] = useState(0);
 
-  useEffect(() => {
-    // Sort rows whenever any counterValue changes
-    const sortedRows = sortRows(rows);
-
-    const isSameOrder = checkIsSameOrder(rows, sortedRows);
-    // if the order is same then we don't change the rows
-    //this will also prevent it from going to infinite re-rendering
-    if (!isSameOrder) {
-      setRows(sortedRows);
-    }
-  }, [rows]);
-
   const reset = (id) => {
-    setRows(
-      rows.map((item) => {
-        if (item.id === id) {
-          let newCounterValue = item.defaultCounterValue;
-          setLastUpdatedId(id);
-          return {
-            ...item,
-            counterValue: newCounterValue,
-            divBy: {
-              divBy2: false,
-              divBy3: false,
-              divBy2and3: false,
-            },
-          };
-        }
-        return item;
-      })
-    );
+    setRows((prevRows) => {
+      const updatedItem = setToDefault(prevRows.find((item) => item.id == id));
+      const newRows = prevRows.map((item) =>item.id == id ? updatedItem : item);
+      return sortRows(newRows);
+    });
+    setLastUpdatedId(id);
   };
 
   const increment = (id) => {
-    setRows(
-      rows.map((item) => {
-        if (item.id === id) {
-          return calculateUpdatedItem(item, 1);
-        }
-        return item;
-      })
-    );
+    setRows((prevRows) => {
+      const updatedItem = calculateUpdatedItem(prevRows.find((item) => item.id == id),1);
+      const newRows = prevRows.map((item) =>item.id == id ? updatedItem : item);
+      return sortRows(newRows);
+    });
     setLastUpdatedId(id);
   };
 
   const decrement = (id) => {
-    setRows(
-      rows.map((item) => {
-        if (item.id === id) {
-          if (item.counterValue - 1 <= item.defaultCounterValue) {
-            return {
-              ...item,
-              counterValue: item.defaultCounterValue,
-              divBy: {
-                divBy2: false,
-                divBy3: false,
-                divBy2and3: false,
-              },
-            };
-          }
-          return calculateUpdatedItem(item, -1);
-        }
-        return item;
-      })
-    );
+    setRows((prevRows) => {
+      const updatedItem = calculateUpdatedItem(prevRows.find((item) => item.id == id),-1);
+      const newRows = prevRows.map((item) =>item.id == id ? updatedItem : item);
+      return sortRows(newRows);
+    });
     setLastUpdatedId(id);
   };
 
