@@ -1,5 +1,6 @@
 import getContentFromType from "./getContentFromType";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { TypeMap } from "../Constants";
 
 function getIconForOperation(operation) {
   const icon = operation == "increment" ? <FaArrowUp /> : <FaArrowDown />;
@@ -8,14 +9,17 @@ function getIconForOperation(operation) {
 
 function ActionElement({ type, id, operation, optFunction }) {
   let content;
-  const icon = getIconForOperation(operation);
-
+  let icon;
   const handleClick = (e) => {
     e.preventDefault();
     optFunction(id);
   };
-
-  content = getContentFromType(type, handleClick, operation, icon);
+  if (type == TypeMap.ICON) {
+    icon = getIconForOperation(operation);
+    content = getContentFromType(type, handleClick, operation, icon);
+  } else {
+    content = getContentFromType(type, handleClick, operation);
+  }
 
   return <div className="row-item">{content}</div>;
 }
