@@ -80,7 +80,7 @@ function App() {
 
   return (
     <>
-      <Box >
+      <Box h="100vh">
         <RowContainer
           rows={rows}
           increment={increment}

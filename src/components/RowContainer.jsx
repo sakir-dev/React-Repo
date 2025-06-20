@@ -2,13 +2,14 @@ import ActionElement from "./ActionElement";
 import CounterBlock from "./CounterBlock";
 import ResetButton from "./ResetButton";
 import ColorBlock from "./ColorBlock";
+import { Flex } from "@chakra-ui/react";
 
 function RowContainer({ rows, increment, decrement, reset }) {
   return (
-    <div className="row-container">
+    <Flex direction={"column"}>
       {rows.map((row) => {
         return (
-          <div key={row.id} className="row">
+          <Flex key={row.id} className="row">
             <ActionElement
               type={row.typeId}
               id={row.id}
@@ -24,10 +25,10 @@ function RowContainer({ rows, increment, decrement, reset }) {
             <CounterBlock id={row.id} rows={rows} />
             <ResetButton id={row.id} reset={reset} />
             <ColorBlock divBy={row.divBy} />
-          </div>
+          </Flex>
         );
       })}
-    </div>
+    </Flex>
   );
 }
 
