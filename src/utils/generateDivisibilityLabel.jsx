@@ -1,6 +1,4 @@
-import React from "react";
-
-function getDivisibleByText({ item }) {
+function generateDivisibilityLabel({ item }) {
   return item.divBy.divBy2and3
     ? "2 and 3 both"
     : item.divBy.divBy3
@@ -10,4 +8,4 @@ function getDivisibleByText({ item }) {
     : "none";
 }
 
-export default getDivisibleByText;
+export default generateDivisibilityLabel;

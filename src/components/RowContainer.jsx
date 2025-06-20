@@ -1,13 +1,31 @@
-import React from "react";
-import ContentRow from "./ContentRow";
-import { useContext } from "react";
-import oneContext from "../context/OneContext";
-function RowContainer() {
-  const { rows } = useContext(oneContext);
+import ActionElement from "./ActionElement";
+import CounterBlock from "./CounterBlock";
+import ResetButton from "./ResetButton";
+import ColorBlock from "./ColorBlock";
+
+function RowContainer({ rows, increment, decrement, reset }) {
   return (
     <div className="row-container">
-      {rows.map((item, _index) => {
-        return <ContentRow key={_index} type={item.typeId} id={item.id} />;
+      {rows.map((row) => {
+        return (
+          <div key={row.id} className="row">
+            <ActionElement
+              type={row.typeId}
+              id={row.id}
+              operation="increment"
+              optFunction={increment}
+            />
+            <ActionElement
+              type={row.typeId}
+              id={row.id}
+              operation="decrement"
+              optFunction={decrement}
+            />
+            <CounterBlock id={row.id} rows={rows} />
+            <ResetButton id={row.id} reset={reset} />
+            <ColorBlock divBy={row.divBy} />
+          </div>
+        );
       })}
     </div>
   );
