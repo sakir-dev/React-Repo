@@ -1,9 +1,11 @@
 import getContentFromType from "./getContentFromType";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { TypeMap } from "../Constants";
+import { Box } from "@chakra-ui/react";
+import { ChevronUpIcon, ChevronDownIcon } from "@chakra-ui/icons";
 
 function getIconForOperation(operation) {
-  const icon = operation == "increment" ? <FaArrowUp /> : <FaArrowDown />;
+  const icon =
+    operation == "increment" ? <ChevronUpIcon /> : <ChevronDownIcon />;
   return icon;
 }
 
@@ -21,7 +23,7 @@ function ActionElement({ type, id, operation, optFunction }) {
     content = getContentFromType(type, handleClick, operation);
   }
 
-  return <div className="row-item">{content}</div>;
+  return <Box className="row-item">{content}</Box>;
 }
 
 export default ActionElement;
