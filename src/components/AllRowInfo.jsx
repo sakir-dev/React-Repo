@@ -1,4 +1,12 @@
-import { ListItem, ListIcon, UnorderedList, Box } from "@chakra-ui/react";
+import {
+  ListItem,
+  ListIcon,
+  UnorderedList,
+  Box,
+  Text,
+  Badge,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { InfoIcon, WarningIcon } from "@chakra-ui/icons";
 import generateDivisibilityLabel from "../utils/generateDivisibilityLabel";
 

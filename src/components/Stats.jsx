@@ -1,12 +1,12 @@
 import AllRowInfo from "./AllRowInfo";
 import LastUpdatedInfo from "./LastUpdatedInfo";
-
+import { Box } from "@chakra-ui/react";
 function Stats({ rows, lastUpdatedId }) {
   return (
-    <div className="counter-stats-container">
+    <Box className="counter-stats-container">
       <LastUpdatedInfo rows={rows} lastUpdatedId={lastUpdatedId} />
       <AllRowInfo rows={rows} />
-    </div>
+    </Box>
   );
 }
 

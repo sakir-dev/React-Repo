@@ -3,6 +3,7 @@ import RowContainer from "./components/RowContainer";
 import Stats from "./components/Stats.jsx";
 import defaultRows from "./data/rowData.jsx";
 import { Box } from "@chakra-ui/react";
+import { Divider } from "@chakra-ui/react";
 function sortRows(rows) {
   return [...rows].sort((a, b) => a.counterValue - b.counterValue);
 }
@@ -80,15 +81,14 @@ function App() {
 
   return (
     <>
-      <Box h="100vh">
-        <RowContainer
-          rows={rows}
-          increment={increment}
-          decrement={decrement}
-          reset={reset}
-        />
-        <Stats rows={rows} lastUpdatedId={lastUpdatedId} />
-      </Box>
+      <RowContainer
+        rows={rows}
+        increment={increment}
+        decrement={decrement}
+        reset={reset}
+      />
+      <Divider />
+      <Stats rows={rows} lastUpdatedId={lastUpdatedId} />
     </>
   );
 }
