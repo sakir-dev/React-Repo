@@ -1,23 +1,21 @@
-import React from "react";
-import { useContext } from "react";
-import oneContext from "../context/OneContext";
-import getDivisibleByText from "../utils/getDivisibleByText";
-function AllRowInfo() {
-  const { rows } = useContext(oneContext);
+import generateDivisibilityLabel from "../utils/generateDivisibilityLabel";
+
+function generateAllRowInfo(rows) {
+  return rows.map((row) => {
+    const divisibleBy = generateDivisibilityLabel({ item: row });
+    return (
+      <li key={row.id}>
+        {row.name} counter : value is: {row.counterValue}, it is divisible by{" "}
+        {divisibleBy}
+      </li>
+    );
+  });
+}
+
+function AllRowInfo({ rows }) {
   return (
     <div className="all-counter-info-container">
-      <ul>
-        {rows.map((item, _index) => {
-          console.log(item);
-          const divisibleBy = getDivisibleByText({ item });
-          return (
-            <li key={_index}>
-              {item.name} counter : value is: {item.counterValue}, it is
-              divisible by {divisibleBy}
-            </li>
-          );
-        })}
-      </ul>
+      <ul>{generateAllRowInfo(rows)}</ul>
     </div>
   );
 }
