@@ -5,7 +5,6 @@ import {
   Box,
   Text,
   Badge,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { InfoIcon, WarningIcon } from "@chakra-ui/icons";
 import generateDivisibilityLabel from "../utils/generateDivisibilityLabel";
