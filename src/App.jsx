@@ -49,7 +49,7 @@ function App() {
       return sortRows(newRows);
     });
     setLastUpdatedId(id);
-  }, []);
+  }, [setRows]);
 
   const increment = useCallback((id) => {
     setRows((prevRows) => {
@@ -63,7 +63,7 @@ function App() {
       return sortRows(newRows);
     });
     setLastUpdatedId(id);
-  }, []);
+  }, [setRows]);
 
   const decrement = useCallback((id) => {
     setRows((prevRows) => {
@@ -77,7 +77,7 @@ function App() {
       return sortRows(newRows);
     });
     setLastUpdatedId(id);
-  }, []);
+  }, [setRows]);
 
   return (
     <>
